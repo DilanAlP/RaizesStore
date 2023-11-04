@@ -1,0 +1,79 @@
+﻿@model RaizesStore.Models.CorreoViewModel
+@{
+    ViewBag.Title = "Raizes";
+}
+
+<main>
+    <section class="vh-100 img-index">
+    </section>
+    <section>
+        <div class="bg-box text-center">
+            <label class="m-2">Nosotros</label>
+            <hr />
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt erat quis dui hendrerit malesuada. Curabitur at pretium orci. Suspendisse iaculis blandit nulla in eleifend. Aenean posuere quis nisl at fringilla. Aenean congue mauris ullamcorper arcu imperdiet, et sollicitudin tellus tincidunt. Aliquam erat volutpat. Integer tristique viverra nisi non placerat. Etiam condimentum, nisi quis tincidunt finibus, ipsum dolor egestas ipsum, sit amet efficitur ante enim vel elit. Donec fringilla rutrum eros consequat ultricies. Aliquam erat volutpat. Quisque ultricies dapibus semper.
+
+                Duis sed diam posuere, molestie mi aliquam, iaculis quam. Aliquam ut mi ante. Aliquam vel imperdiet libero. Morbi sodales ultricies est sed tristique. Donec vehicula turpis ac tellus mattis, id vulputate ante maximus. Praesent eget enim lectus. Praesent ac metus massa. Phasellus sodales dui eu metus condimentum, quis fermentum augue dapibus. Nullam at est vel augue consequat lobortis et eget nibh.
+            </p>
+        </div>
+    </section>
+    <section>
+        <div class="bg-box text-center">
+            <label class="m-2">Nueststros servicios</label>
+            <hr />
+            <div class="grid-column">
+                <div>
+                    VENTA DE PLANTAS
+                </div>
+                <div>
+                    TALLERES ONLINE
+                </div>
+                <div>
+                    CURSOS PRECENCIALES
+                </div>
+                <div>
+                    ACONDICIONAMIENTO DE PAISAJE
+                </div>
+                <div>
+                    HOSPITAL
+                </div>
+                <div>
+                    VENTA DE ARTICULOS
+                </div>
+                <div>
+                    PET-FREANDLYS
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="bg-box text-center">
+            <label class="m-2">Contactanos</label>
+            <hr />
+            <div class="d-flex align-items-center justify-content-center flex-column">
+                @using (Html.BeginForm("Index", "SendCorreo", FormMethod.Post, new { id = "formId", @class = "form-class d-flex align-items-center justify-content-center flex-column" }))
+                {
+                    @Html.LabelFor(x => x.correo)
+                    @Html.TextBoxFor(x => x.correo)
+
+                    @Html.LabelFor(x => x.nombre)
+                    @Html.TextBoxFor(x => x.nombre)
+
+                    @Html.LabelFor(x => x.telefono)
+                    @Html.TextBoxFor(x => x.telefono)
+
+                    @Html.LabelFor(x => x.asunto)
+                    @Html.TextBoxFor(x => x.asunto)
+
+                    @Html.LabelFor(x => x.cuerpo)
+                    @Html.TextAreaFor(x => x.cuerpo)
+
+                    <button type="submit" class="btn btn-success">Enviar</button>
+
+                }
+            </div>
+        </div>
+    </section>
+</main>
