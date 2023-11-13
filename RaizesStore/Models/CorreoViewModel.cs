@@ -8,15 +8,15 @@ namespace RaizesStore.Models
 {
     public class CorreoViewModel
     {
-        [DisplayName ("CORREO")]
-        public string correo { get; set; }
+        [DisplayName("CORREO")]
+        public string mail { get; set; }
         [DisplayName("TU NOMBRE")]
-        public string nombre { get; set; }
+        public string name { get; set; }
         [DisplayName("TELEFONO CELULAR")]
-        public string telefono { get; set; }
+        public string phone { get; set; }
         [DisplayName("TITULO DEL CORREO")]
-        public string asunto { get; set; }
+        public string title { get; set; }
         [DisplayName("DANOS TU OPINON")]
-        public string cuerpo { get; set; }  
+        public string body { get; set; }  
     }
 }

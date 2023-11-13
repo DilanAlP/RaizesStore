@@ -29,8 +29,8 @@ textarea {
 .bg-box {
     margin: 5rem;
     padding: 3rem;
-    backdrop-filter: blur(44px);
-    background: rgb(219 255 222);
+    backdrop-filter: blur(4px);
+    background: rgb(219 255 222 / 34%)  ;
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -50,3 +50,22 @@ textarea {
         max-width: 15rem;
         max-height: 8rem;
     }
+
+.ul-index {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.ul-index li{
+    margin: 1rem;
+}
+.bg-raizes-bar {
+    width: 100%;
+    background-color: #00841599 !important;
+    z-index: 2;
+}
+
+.text-justify{
+    text-align: justify;
+}

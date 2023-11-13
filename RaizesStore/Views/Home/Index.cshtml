@@ -1,20 +1,60 @@
-﻿@model RaizesStore.Models.CorreoViewModel
+﻿@model RaizesStore.Models.IndexSharedViewModel
 @{
     ViewBag.Title = "Raizes";
 }
+<style>
+    body {
+        background-image: url(/Images/raizes.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    #leave-left {
+        position: absolute !important;
+        left: -10rem;
+        transform: scaleX(-1);
+    }
+
+    #leave-right {
+        position: absolute !important;
+        right: -10rem;      
+    }
+</style>
+
 
 <main>
     <section class="vh-100 img-index">
+        @*<script type="module" src="https://unpkg.com/&#64;splinetool/viewer@0.9.493/build/spline-viewer.js"></script>
+            <spline-viewer url="https://prod.spline.design/hOuuqo12gsadR8lU/scene.splinecode"></spline-viewer>*@
+        <div id="leave-left">
+            <img src="~/Images/leaves.png" alt="left_leave" />
+        </div>
+        @*<div id="leave-right">
+                <img src="~/Images/leaves.png" alt="rght_leave" />
+            </div>*@
+
     </section>
     <section>
-        <div class="bg-box text-center">
-            <label class="m-2">Nosotros</label>
-            <hr />
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt erat quis dui hendrerit malesuada. Curabitur at pretium orci. Suspendisse iaculis blandit nulla in eleifend. Aenean posuere quis nisl at fringilla. Aenean congue mauris ullamcorper arcu imperdiet, et sollicitudin tellus tincidunt. Aliquam erat volutpat. Integer tristique viverra nisi non placerat. Etiam condimentum, nisi quis tincidunt finibus, ipsum dolor egestas ipsum, sit amet efficitur ante enim vel elit. Donec fringilla rutrum eros consequat ultricies. Aliquam erat volutpat. Quisque ultricies dapibus semper.
+        @section index_menu{
+            <li onclick="OpeNModal();" class="nav-link" style="cursor:pointer"> Iniciar sesion</li>
+        }
 
-                Duis sed diam posuere, molestie mi aliquam, iaculis quam. Aliquam ut mi ante. Aliquam vel imperdiet libero. Morbi sodales ultricies est sed tristique. Donec vehicula turpis ac tellus mattis, id vulputate ante maximus. Praesent eget enim lectus. Praesent ac metus massa. Phasellus sodales dui eu metus condimentum, quis fermentum augue dapibus. Nullam at est vel augue consequat lobortis et eget nibh.
-            </p>
+
+        <div class="bg-box text-center d-flex h-100">
+            <div class="h-100 m-3">
+                <img src="~/Images/img-1.jpg" alt="woman-planting" class="h-75" />
+            </div>
+            <div class="h-100 m-3">
+                <label class="m-2">Nosotros</label>
+                <hr />
+                <p class="text-justify">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt erat quis dui hendrerit malesuada. Curabitur at pretium orci. Suspendisse iaculis blandit nulla in eleifend. Aenean posuere quis nisl at fringilla. Aenean congue mauris ullamcorper arcu imperdiet, et sollicitudin tellus tincidunt. Aliquam erat volutpat. Integer tristique viverra nisi non placerat. Etiam condimentum, nisi quis tincidunt finibus, ipsum dolor egestas ipsum, sit amet efficitur ante enim vel elit. Donec fringilla rutrum eros consequat ultricies. Aliquam erat volutpat. Quisque ultricies dapibus semper.
+
+                    Duis sed diam posuere, molestie mi aliquam, iaculis quam. Aliquam ut mi ante. Aliquam vel imperdiet libero. Morbi sodales ultricies est sed tristique. Donec vehicula turpis ac tellus mattis, id vulputate ante maximus. Praesent eget enim lectus. Praesent ac metus massa. Phasellus sodales dui eu metus condimentum, quis fermentum augue dapibus. Nullam at est vel augue consequat lobortis et eget nibh.
+                </p>
+
+            </div>
         </div>
     </section>
     <section>
@@ -22,28 +62,31 @@
             <label class="m-2">Nueststros servicios</label>
             <hr />
             <div class="grid-column">
-                <div>
-                    VENTA DE PLANTAS
-                </div>
-                <div>
-                    TALLERES ONLINE
-                </div>
-                <div>
-                    CURSOS PRECENCIALES
-                </div>
-                <div>
-                    ACONDICIONAMIENTO DE PAISAJE
-                </div>
-                <div>
-                    HOSPITAL
-                </div>
-                <div>
-                    VENTA DE ARTICULOS
-                </div>
-                <div>
-                    PET-FREANDLYS
-                </div>
+                @foreach (var Service in Model.services)
+                    {
+                        <div>
+                            @Service.title
+                        </div>
 
+                    }
+                @*<div>
+                        TALLERES ONLINE
+                    </div>
+                    <div>
+                        CURSOS PRECENCIALES
+                    </div>
+                    <div>
+                        ACONDICIONAMIENTO DE PAISAJE
+                    </div>
+                    <div>
+                        HOSPITAL
+                    </div>
+                    <div>
+                        VENTA DE ARTICULOS
+                    </div>
+                    <div>
+                        PET-FREANDLYS
+                    </div>*@
             </div>
         </div>
     </section>
@@ -52,28 +95,141 @@
         <div class="bg-box text-center">
             <label class="m-2">Contactanos</label>
             <hr />
-            <div class="d-flex align-items-center justify-content-center flex-column">
-                @using (Html.BeginForm("Index", "SendCorreo", FormMethod.Post, new { id = "formId", @class = "form-class d-flex align-items-center justify-content-center flex-column" }))
-                {
-                    @Html.LabelFor(x => x.correo)
-                    @Html.TextBoxFor(x => x.correo)
+            <div class="d-flex align-items-center justify-content-sm-around">
+                <div>
+                    @using (Html.BeginForm("SendMail", "Home", FormMethod.Post, new { id = "formId", @class = "form-class d-flex align-items-center justify-content-center flex-column" }))
+                    {
+                        @Html.LabelFor(x => x.mail.mail)
+                        @Html.TextBoxFor(x => x.mail.mail, new { @class = "form-control" })
 
-                    @Html.LabelFor(x => x.nombre)
-                    @Html.TextBoxFor(x => x.nombre)
+                        @Html.LabelFor(x => x.mail.name)
+                        @Html.TextBoxFor(x => x.mail.name, new { @class = "form-control" })
 
-                    @Html.LabelFor(x => x.telefono)
-                    @Html.TextBoxFor(x => x.telefono)
+                        @Html.LabelFor(x => x.mail.phone)
+                        @Html.TextBoxFor(x => x.mail.phone, new { @class = "form-control" })
 
-                    @Html.LabelFor(x => x.asunto)
-                    @Html.TextBoxFor(x => x.asunto)
+                        @Html.LabelFor(x => x.mail.title)
+                        @Html.TextBoxFor(x => x.mail.title, new { @class = "form-control" })
 
-                    @Html.LabelFor(x => x.cuerpo)
-                    @Html.TextAreaFor(x => x.cuerpo)
+                        @Html.LabelFor(x => x.mail.body)
+                        @Html.TextAreaFor(x => x.mail.body, new { @class = "form-control" })
 
-                    <button type="submit" class="btn btn-success">Enviar</button>
+                        <button type="submit" class="btn btn-success w-100 mt-3">Enviar</button>
 
-                }
+                    }
+                </div>
+                <div>
+                    Nuestra informcion de contacto
+                    <ul class="ul-index">
+                        <li>Telefono</li>
+                        <li>Direccion</li>
+                        <li>Correo</li>
+                        <li>Correo</li>
+                    </ul>
+                </div>
             </div>
+
         </div>
     </section>
+    <div class="modal" id="LoginModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Cabecera del Modal -->
+                <div class="modal-header">
+
+                    <h4 class="modal-title text-center">Inicia tu sesion</h4>
+                </div>
+
+                <!-- Contenido del Modal -->
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "basic-form text-center d-flex justify-content-center align-items-center flex-column" }))
+                {
+                    <div class="modal-body">
+                        @Html.LabelFor(x => x.login.email)
+                        @Html.TextBoxFor(x => x.login.email, new { @class = "form-control" })
+                        @Html.LabelFor(x => x.login.password)
+                        @Html.TextBoxFor(x => x.login.password, new { @class = "form-control" })
+                        <a onclick="OpenRegModal();" style="cursor:pointer">Registrate</a>
+                    </div>
+
+                    <!-- Pie del Modal -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" onclick="CloseModal();">Cerrar</button>
+                        <button class="btn btn-success" type="submit">Guardar</button>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="RegisModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Cabecera del Modal -->
+                <div class="modal-header">
+
+                    <h4 class="modal-title text-center">Registrate y <b>crece</b> con nosotros</h4>
+                </div>
+
+                <!-- Contenido del Modal -->
+                @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "basic-form text-center d-flex justify-content-center align-items-center flex-column" }))
+                {
+                    <div class="modal-body">
+                        @Html.LabelFor(x => x.login.name)
+                        @Html.TextBoxFor(x => x.login.name, new { @class = "form-control" })
+                        @Html.LabelFor(x => x.login.flastname)
+                        @Html.TextBoxFor(x => x.login.flastname, new { @class = "form-control" })
+                        @Html.LabelFor(x => x.login.slastname)
+                        @Html.TextBoxFor(x => x.login.slastname, new { @class = "form-control" })
+                        @Html.LabelFor(x => x.login.phone)
+                        @Html.TextBoxFor(x => x.login.phone, new { @class = "form-control" })
+                        @Html.LabelFor(x => x.login.email)
+                        @Html.TextBoxFor(x => x.login.email, new { @class = "form-control" })
+                        @Html.LabelFor(x => x.login.password)
+                        @Html.TextBoxFor(x => x.login.password, new { @class = "form-control" })
+                        <a onclick="CloseRegModal();" style="cursor:pointer">Iniciar sesion</a>
+
+                    </div>
+
+                    <!-- Pie del Modal -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="CloseModal();">Cerrar</button>
+                <button class="btn btn-success" type="submit">Guardar</button>
+            </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
 </main>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                var value = $(this).scrollTop();
+                $('#leave-left').css('rotate', value * .2 + 'deg');
+                $('#leave-right').css('rotate', value * -.2 + 'deg');
+            });
+        });
+        function OpeNModal() {
+            $('#LoginModal').modal('show');
+        }
+        function CloseModal() {
+            $('#LoginModal').modal('hide');
+            $('#RegisModal').modal('hide');
+        }
+        function OpenRegModal() {
+            $('#RegisModal').modal('show');
+        }
+        function CloseRegModal() {
+            $('#RegisModal').modal('hide');
+        }
+
+
+    </script>
+}
+

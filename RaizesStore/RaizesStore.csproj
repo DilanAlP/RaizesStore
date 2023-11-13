@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -121,10 +129,50 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DataAcces\BaseActionResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Blog.cs">
+      <DependentUpon>Raizes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BlogViewModel.cs" />
+    <Compile Include="Models\Contac_mails.cs">
+      <DependentUpon>Raizes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CorreoViewModel.cs" />
+    <Compile Include="Models\IndexSharedViewModel.cs" />
+    <Compile Include="Models\Landpage.cs">
+      <DependentUpon>Raizes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LandViewModel.cs" />
+    <Compile Include="Models\Layout.cs">
+      <DependentUpon>Raizes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\Raizes.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Raizes.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Raizes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Raizes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Raizes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Raizes.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Services.cs">
+      <DependentUpon>Raizes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServicesViewModel.cs" />
+    <Compile Include="Models\Stores.cs">
+      <DependentUpon>Raizes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StoreViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,13 +197,34 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\green_house.jpg" />
     <Content Include="Images\green_house_2.jpg" />
+    <Content Include="Images\img-1.jpg" />
+    <Content Include="Images\img-2.jpg" />
     <Content Include="Images\index_img.jpg" />
+    <Content Include="Images\leaves.png" />
+    <Content Include="Images\raizes.png" />
+    <Content Include="Models\Raizes.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Raizes.Context.cs</LastGenOutput>
+      <DependentUpon>Raizes.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Raizes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Raizes.edmx</DependentUpon>
+      <LastGenOutput>Raizes.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\Raizes.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Raizes.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Raizes.edmx.diagram">
+      <DependentUpon>Raizes.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -211,6 +280,9 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
